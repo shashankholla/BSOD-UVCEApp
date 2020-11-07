@@ -42,7 +42,7 @@
             android:textColor="@android:color/white"
             android:background="@drawable/next_button"
             android:layout_margin="20dp"
-            android:id="@+id/nextButton"
+            android:id="@+id/regNextButton"
             android:text="@string/next"/>
 
     </RelativeLayout>

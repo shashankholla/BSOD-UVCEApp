@@ -52,4 +52,20 @@
     <string name="employerPrompt">Employer</string>
     <string name="please_enter_your_otp">Please Enter your OTP</string>
     <string name="verify">Verify</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="employer">Employer</string>
+    <string name="labourer">Labourer</string>
+    <string name="name">Name</string>
+    <string name="location">Location</string>
+    <string name="get_location">Get Location</string>
+    <string name="select_your_user_type">Select Your User Type</string>
+    <string name="default_location">0 0</string>
+    <string name="construction">Construction</string>
+    <string name="painting">Painting</string>
+    <string name="carpentry">Carpentry</string>
+    <string name="plumbing">Plumbing</string>
+    <string name="electric_work">Electric Work</string>
+    <string name="skill_message">Select the applicable skills</string>
+    <string name="finish">Finish</string>
 </resources>
