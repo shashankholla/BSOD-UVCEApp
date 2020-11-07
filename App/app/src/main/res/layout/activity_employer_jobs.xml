@@ -5,5 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".mainpage.EmployerJobs">
+    <!--Toolbar for settings menu -->
+    <include layout="@layout/layout_toolbar"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
