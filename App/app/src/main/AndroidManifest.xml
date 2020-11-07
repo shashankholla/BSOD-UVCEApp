@@ -19,8 +19,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BSOD_UVCE">
-        <activity android:name=".mainpage.EmployerJobs"></activity>
-        <activity android:name=".createJob" />
+        <activity android:name=".mainpage.EmployerJobs"> <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
+        <activity android:name=".createJob" >
+
+        </activity>
         <activity android:name=".login.UpdateDetails" />
         <activity android:name=".login.OtpActivity" />
         <activity android:name=".mainpage.viewJobs" />
@@ -28,11 +34,7 @@
         <activity android:name=".profiles.labourProfile" />
         <activity android:name=".login.SelectSkills" />
         <activity android:name=".login.LoginRegPage">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <provider

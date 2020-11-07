@@ -89,4 +89,8 @@
     <string name="set_location_hint">Type your location</string>
     <string name="submit">Submit</string>
     <string name="description">Description</string>
+
+<!--    Dont translate this-->
+    <string name="db_jobs" translatable="false">jobs</string>
+
 </resources>
