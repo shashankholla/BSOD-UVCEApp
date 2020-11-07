@@ -34,6 +34,7 @@ public class LoginRegPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login_reg_page);
         phoneNumber = findViewById(R.id.phoneText);
         auth = FirebaseAuth.getInstance();
