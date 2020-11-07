@@ -1,8 +1,6 @@
 package com.example.bsod_uvce.mainpage;
 
 import android.os.Build;
-import android.transition.AutoTransition;
-import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +18,7 @@ import com.example.bsod_uvce.R;
 import java.util.ArrayList;
 
 
-public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.ExampleViewHolder> {
+public class ViewAppliedJobsAdapter extends RecyclerView.Adapter<ViewAppliedJobsAdapter.ExampleViewHolder> {
     private ArrayList<Job> mExampleList;
 
     public static class ExampleViewHolder extends RecyclerView.ViewHolder {
@@ -46,7 +44,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.ExampleVie
         }
     }
 
-    public ObjectAdapter(ArrayList<Job> exampleList) {
+    public ViewAppliedJobsAdapter(ArrayList<Job> exampleList) {
         mExampleList = exampleList;
     }
 
