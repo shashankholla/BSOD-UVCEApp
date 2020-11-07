@@ -7,12 +7,16 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
+import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,9 +35,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bsod_uvce.MainActivity;
 import com.example.bsod_uvce.R;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
@@ -50,13 +51,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class UpdateDetails extends AppCompatActivity {
+public class UpdateDetails extends AppCompatActivity implements LocationListener{
     EditText nameText;
     boolean labourer=false;
     TextView locationLabel;
     Button locationButton;
     TextInputLayout nameInput;
-    FusedLocationProviderClient fusedLocationProviderClient;
     ImageView profilePicture;
     Uri profilePhotoUri;
     int REQUEST_IMAGE_CAPTURE = 69;
@@ -65,53 +65,29 @@ public class UpdateDetails extends AppCompatActivity {
     FirebaseFirestore db;
     FirebaseUser mUser;
     FirebaseAuth auth;
+    private LocationManager locationManager;
+    private String provider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        provider = locationManager.getBestProvider(criteria, false);
         setContentView(R.layout.activity_update_details);
         locationLabel = findViewById(R.id.locationLabel);
         nameText = findViewById(R.id.nameTextBox);
         nameInput = findViewById(R.id.nameInput);
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         auth = FirebaseAuth.getInstance();
         mUser =auth.getCurrentUser();
         locationButton = findViewById(R.id.locationButton);
         db = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
-        locationButton.setOnClickListener(view -> {
-            Toast.makeText(this, "Trying to get your location", Toast.LENGTH_SHORT).show();
-            if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M)
-            {
-                if(getApplicationContext().checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)== PackageManager.PERMISSION_GRANTED)
-                {
-                    fusedLocationProviderClient.getLastLocation()
-                            .addOnSuccessListener(UpdateDetails.this, location -> {
-                                // Got last known location. In some rare situations this can be null.
-                                if (location != null) {
-                                    Geocoder geocoder = new Geocoder(UpdateDetails.this, Locale.getDefault());
-                                    List<Address> addressList = null;
-                                    try
-                                    {
-                                        addressList = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                                        locationLabel.setText(addressList.get(0).getLocality());
-                                        Log.e("Location!!!!",addressList.get(0).getLocality());
-                                    }
-                                    catch (IOException e)
-                                    {
-                                        e.printStackTrace();
-                                    }
-                                }
-                                else
-                                {
-                                    Log.e("Location@@@", "It is null");
-                                }
-                            });
-                }
-                else
-                {
-                    ActivityCompat.requestPermissions(UpdateDetails.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 44);
-                }
+        locationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getLocation();
             }
         });
         (findViewById(R.id.nextDetails)).setOnClickListener(view -> {
@@ -127,7 +103,6 @@ public class UpdateDetails extends AppCompatActivity {
                 intent.putExtra("Name", name);
                 intent.putExtra("Location", location);
                 intent.putExtra("Type", type);
-                intent.putExtra("Display Picture", profilePhotoUri.toString());
                 startActivity(intent);
             }
         });
@@ -260,4 +235,106 @@ public class UpdateDetails extends AppCompatActivity {
         });
     }
 
+    public void getLocation()
+    {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        Location location = getLastKnownLocation();
+
+        if (location != null) {
+            System.out.println("Provider " + provider + " has been selected.");
+            onLocationChanged(location);
+        } else {
+
+        }
+    }
+
+    private Location getLastKnownLocation() {
+        locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
+        List<String> providers = locationManager.getProviders(true);
+        Location bestLocation = null;
+        for (String provider : providers) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                return null;
+            }
+            Location l = locationManager.getLastKnownLocation(provider);
+            if (l == null) {
+                continue;
+            }
+            if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
+                // Found best last known location: %s", l);
+                bestLocation = l;
+            }
+        }
+        return bestLocation;
+    }
+    @Override
+    public void onLocationChanged(Location location) {
+        //You had this as int. It is advised to have Lat/Loing as double.
+        double lat = location.getLatitude();
+        double lng = location.getLongitude();
+
+        Geocoder geoCoder = new Geocoder(this, Locale.getDefault());
+        StringBuilder builder = new StringBuilder();
+        try {
+            List<Address> address = geoCoder.getFromLocation(lat, lng, 1);
+
+            String mCountry = address.get(0).getCountryName();
+            String mLocality = address.get(0).getLocality();
+            String mArea = address.get(0).getSubLocality();
+            String fnialAddress = builder.toString(); //This is the complete address.
+
+            locationLabel.setText(mLocality);
+
+        } catch (IOException e) {
+            // Handle IOException
+        } catch (NullPointerException e) {
+            // Handle NullPointerException
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        locationManager.requestLocationUpdates(provider, 400, 1, (LocationListener) this);
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        locationManager.removeUpdates((LocationListener) this);
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+        Toast.makeText(this, "Enabled new provider " + provider,
+                Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        Toast.makeText(this, "Disabled provider " + provider,
+                Toast.LENGTH_SHORT).show();
+    }
 }
