@@ -59,4 +59,17 @@
     <string name="job_title">ಉದ್ಯೋಗ ಶೀರ್ಷಿಕೆಯನ್ನು ನಮೂದಿಸಿ</string>
     <string name="job_desc">"ಉದ್ಯೋಗ ವಿವರಣೆಯನ್ನು ನಮೂದಿಸಿ "</string>
     <string name="salary_for_job">"ಉದ್ಯೋಗಕ್ಕೆ ಸಂಬಳ "</string>
+    <string name="employer">ಉದ್ಯೋಗದಾತ</string>
+    <string name="labourer">ಕಾರ್ಮಿಕ</string>
+    <string name="name">ಹೆಸರು</string>
+    <string name="location">ಸ್ಥಳ</string>
+    <string name="get_location">"ಸ್ಥಳವನ್ನು ಪಡೆಯಿರಿ "</string>
+    <string name="select_your_user_type">"ನಿಮ್ಮ ಬಳಕೆದಾರ ಪ್ರಕಾರವನ್ನು ಆಯ್ಕೆಮಾಡಿ "</string>
+    <string name="construction">"ನಿರ್ಮಾಣದ ಕೆಲಸ "</string>
+    <string name="painting">ಪೇಂಟಿಂಗ್</string>
+    <string name="carpentry">ಮರಗೆಲಸ</string>
+    <string name="plumbing">ಪ್ಲ್ಯೂಮ್ಬಿಂಗ್</string>
+    <string name="electric_work">"ವಿದ್ಯುತ್ ಕೆಲಸ "</string>
+    <string name="skill_message">"ಅನ್ವಯವಾಗುವ ಕೌಶಲ್ಯಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ "</string>
+    <string name="finish">ಮುಕ್ತಾಯ</string>
 </resources>
