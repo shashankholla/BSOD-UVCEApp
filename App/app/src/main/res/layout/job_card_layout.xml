@@ -114,14 +114,29 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/relLayout">
 
-            <androidx.recyclerview.widget.RecyclerView
+            <TextView
+                android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/altAppsRV"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-            </androidx.recyclerview.widget.RecyclerView>
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="Description" />
+            <Button
+                android:id="@+id/applyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_200"
+                android:elevation="0dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:paddingTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="Description" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

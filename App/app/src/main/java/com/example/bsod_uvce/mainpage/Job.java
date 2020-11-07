@@ -10,8 +10,10 @@ public class Job {
     public String description;
     public String jobDuration;
     public String amount;
+    public boolean ifApplied;
+    public boolean ifAccepted;
 
-    public Job(String jobTitle, String description, String jobCategory, String jobDuration, String amount
+    public Job(String jobTitle, String description, String jobCategory, String jobDuration, String amount, boolean ifApplied, boolean ifAccepted
 
     ){
         this.jobTitle = jobTitle;
@@ -19,14 +21,18 @@ public class Job {
         this.description = description;
         this.jobDuration = jobDuration;
         this.amount = amount;
+        this.ifApplied = ifApplied;
+        this.ifAccepted = ifAccepted;
     }
-    public Job(String jobTitle, String description, String jobCategory, String jobDuration, String amount, Drawable jobCategoryIcon){
+    public Job(String jobTitle, String description, String jobCategory, String jobDuration, String amount, boolean ifApplied, boolean ifAccepted, Drawable jobCategoryIcon){
         this.jobTitle = jobTitle;
         this.jobCategory = jobCategory;
         this.description = description;
         this.jobDuration = jobDuration;
         this.amount = amount;
         this.jobCategoryIcon = jobCategoryIcon;
+        this.ifApplied = ifApplied;
+        this.ifAccepted = ifAccepted;
     }
     public String getJobTitle() {
         return jobTitle;
@@ -43,4 +49,11 @@ public class Job {
     public String getAmount() {
         return amount;
     }
+    public boolean getIfApplied() {
+        return ifApplied;
+    }
+    public boolean getIfAccepted() {
+        return ifAccepted;
+    }
+
 }

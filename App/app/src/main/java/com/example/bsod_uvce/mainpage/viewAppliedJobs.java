@@ -10,7 +10,7 @@ import com.example.bsod_uvce.R;
 
 import java.util.ArrayList;
 
-public class viewjobs extends AppCompatActivity {
+public class viewAppliedJobs extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -21,10 +21,10 @@ public class viewjobs extends AppCompatActivity {
         setContentView(R.layout.activity_viewjobs);
 
         ArrayList<Job> exampleList = new ArrayList<>();
-        exampleList.add(new Job("Painting", "Line 1", "Generic, House, Construction", "3 Days", "50 Rs", true, false));
+        exampleList.add(new Job("Painting", "Line 1", "Generic, House, Construction", "3 Days", "50 Rs",true, true));
         exampleList.add(new Job("Pipe Repair", "Line 3", "Plumbing", "3 Days", "50 Rs", false, false));
-        exampleList.add(new Job("Construction", "Line 5", "Construction, House", "3 Days", "50 Rs", true, true));
-        exampleList.add(new Job("TV Repair", "Line 7", "Electricals, Electronics", "3 Days", "50 Rs", false, false));
+        exampleList.add(new Job("Construction", "Line 5", "Construction, House", "3 Days", "50 Rs", false, false));
+        exampleList.add(new Job("TV Repair", "Line 7", "Electricals, Electronics", "3 Days", "50 Rs", true, false));
 
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);

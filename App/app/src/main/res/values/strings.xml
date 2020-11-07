@@ -15,12 +15,8 @@
     <string name="your_skillset">Your skillset</string>
     <string name="your_rating">Your rating for this week!</string>
 
-    <string-array name="predef_skills">
-        <item>Cooking</item>
-        <item>Cleaning</item>
-    </string-array>    
+    <string name="emailPrompt">Email</string>
 
-	<string name="emailPrompt">Email</string>
     <string name="passwordPrompt">OTP</string>
     <string name="forgotPasswordLabel">Forgot Password?</string>
     <string name="signUpLabel1">Don\'t Have an account?</string>
@@ -63,4 +59,8 @@
     <string name="employerPrompt">Employer</string>
     <string name="please_enter_your_otp">Please Enter your OTP</string>
     <string name="verify">Verify</string>
+    <string-array name="predef_skills">
+        <item>Cooking</item>
+        <item>Cleaning</item>
+    </string-array>
 </resources>
