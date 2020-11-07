@@ -42,6 +42,8 @@ public class EmployerJobs extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
         toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
