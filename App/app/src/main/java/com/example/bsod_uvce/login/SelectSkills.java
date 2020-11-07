@@ -7,30 +7,35 @@ import androidx.appcompat.widget.SwitchCompat;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.example.bsod_uvce.R;
-import com.example.bsod_uvce.profiles.User;
-import com.google.android.gms.tasks.OnCompleteListener;
+
+import com.example.bsod_uvce.mainpage.viewJobs;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnSuccessListener;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
+
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SelectSkills extends AppCompatActivity {
     boolean painting, carpentry, electrical, plumbing, construction;
     Button finishButton;
     FirebaseUser mUser;
     FirebaseAuth auth;
-    Uri profilePhotoUri;
     String name;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +44,7 @@ public class SelectSkills extends AppCompatActivity {
         name = getIntent().getStringExtra("Name");
         String location = getIntent().getStringExtra("Location");
         String type = getIntent().getStringExtra("Type");
-
+        db = FirebaseFirestore.getInstance();
         CompoundButton.OnCheckedChangeListener multiListener = (v, isChecked) -> {
             switch (v.getId()){
                 case R.id.switchCarpentry:
@@ -73,20 +78,38 @@ public class SelectSkills extends AppCompatActivity {
 
     private void registerUser(String name, String location, String type)
     {
-            User user = new User();
-            user.setName(name);
-            user.setLocation(location);
-            user.setPhoneNumber(mUser.getPhoneNumber());
+            Map<String, Object> dataMap = new HashMap<>();
+            dataMap.put("Name", name);
+            dataMap.put("Location", location);
+            dataMap.put("Phone Number", mUser.getPhoneNumber());
+            List<String> skillList = new ArrayList<>();
             if (carpentry)
-                user.addNewSkill("Carpentry");
+                skillList.add("Carpentry");
             if (construction)
-                user.addNewSkill("Construction");
+                skillList.add("Construction");
             if (plumbing)
-                user.addNewSkill("Plumbing");
+                skillList.add("Plumbing");
             if (electrical)
-                user.addNewSkill("Electrical");
+                skillList.add("Electrical");
             if (painting)
-                user.addNewSkill("Painting");
+                skillList.add("Painting");
+            dataMap.put("Skills", skillList);
+            dataMap.put("Rating", 0);
+            dataMap.put("Certificates", null);
+            db.collection("Labourer").document(mUser.getUid()).set(dataMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("Success", "DocumentSnapshot successfully written!");
+            }
+            }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w("Failure", "Error writing document", e);
+            }
+            });
+            Intent intent = new Intent(SelectSkills.this, viewJobs.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
     }
 
 

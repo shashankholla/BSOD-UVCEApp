@@ -42,7 +42,8 @@ public class LoginRegPage extends AppCompatActivity {
             startActivity(intent);
         });
     }
-    private void updateUI(FirebaseUser user) {
+    private void updateUI(FirebaseUser user)
+    {
         Intent intent = new Intent(LoginRegPage.this, UpdateDetails.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
