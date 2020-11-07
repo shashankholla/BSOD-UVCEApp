@@ -30,7 +30,7 @@ public class EmployerJobs extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new ViewAppliedJobsAdapter(exampleList);
+        mAdapter = new EmployerSubmittedJobsAdapter(exampleList, mRecyclerView);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
