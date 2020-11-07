@@ -6,15 +6,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toolbar;
 
 import com.example.bsod_uvce.R;
 import com.example.bsod_uvce.createJob;
+import com.example.bsod_uvce.login.Settings;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 public class EmployerJobs extends AppCompatActivity {
+    Toolbar toolbar;
+
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -39,7 +45,7 @@ public class EmployerJobs extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        fab = findViewById(R.id.fab);
+	fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +53,22 @@ public class EmployerJobs extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
 
+ @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.settings:
+                intent = new Intent(EmployerJobs.this, Settings.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_toolbar, menu);
+        return true;
     }
 }
