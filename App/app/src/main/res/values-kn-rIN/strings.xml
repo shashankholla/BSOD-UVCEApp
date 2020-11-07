@@ -72,4 +72,8 @@
     <string name="electric_work">"ವಿದ್ಯುತ್ ಕೆಲಸ "</string>
     <string name="skill_message">"ಅನ್ವಯವಾಗುವ ಕೌಶಲ್ಯಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ "</string>
     <string name="finish">ಮುಕ್ತಾಯ</string>
+    <string name="skills_needed">ಈ ಕೆಲಸಕ್ಕೆ ಅಗತ್ಯವಾದ ಕೌಶಲ್ಯಗಳು</string>
+    <string name="set_location_hint">"ನಿಮ್ಮ ಸ್ಥಳವನ್ನು ಟೈಪ್ ಮಾಡಿ "</string>
+    <string name="submit">ಸಲ್ಲಿಸು</string>
+    <string name="description">ವಿವರಣೆ</string>
 </resources>
