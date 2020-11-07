@@ -1,5 +1,6 @@
 package com.example.bsod_uvce;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
@@ -29,8 +31,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bsod_uvce.mainpage.EmployerJobs;
 import com.example.bsod_uvce.mainpage.Job;
 import com.example.bsod_uvce.profiles.labourProfile;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
@@ -47,10 +53,13 @@ public class createJob extends AppCompatActivity implements LocationListener {
     private EditText jobTitle;
     private EditText jobDesc;
     private EditText addressField;
+    private EditText salary;
+    private EditText location;
     private LocationManager locationManager;
     private String provider;
     private TagContainerLayout mTagContainerLayout;
     private Button addSkillBtn;
+    private Button getLocation;
     private int MAX_WORDS = 1;
     private Button addJob;
     FirebaseFirestore db;
@@ -63,11 +72,31 @@ public class createJob extends AppCompatActivity implements LocationListener {
         addSkillBtn = findViewById(R.id.add_tag_btn);
         addTagsET = findViewById(R.id.add_tag_et);
         addJob = findViewById(R.id.add_job);
+        getLocation = findViewById(R.id.get_location);
         List<String> list2 = new ArrayList<String>();
         mTagContainerLayout.setTags(list2);
         db = FirebaseFirestore.getInstance();
+        jobTitle = findViewById(R.id.job_title);
+        jobDesc = findViewById(R.id.job_desc);
+        addressField = findViewById(R.id.my_location);
+        salary = findViewById(R.id.salary);
 
 
+        getLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Location location = getLastKnownLocation();
+
+
+                if (location != null) {
+                    System.out.println("Provider " + provider + " has been selected.");
+                    onLocationChanged(location);
+                } else {
+
+                }
+
+            }
+        });
         mTagContainerLayout.setOnTagClickListener(new TagView.OnTagClickListener() {
             @Override
             public void onTagClick(int position, String text) {
@@ -160,21 +189,27 @@ public class createJob extends AppCompatActivity implements LocationListener {
 
             return;
         }
-        Location location = getLastKnownLocation();
-
-
-        if (location != null) {
-            System.out.println("Provider " + provider + " has been selected.");
-            onLocationChanged(location);
-        } else {
-
-        }
 
         addJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String title = jobTitle.getText().toString();
+                String desc = jobDesc.getText().toString();
+                String jobSalary = salary.getText().toString();
+                String skills = list2.toString();
+
+
+
                 //exampleList.add(new Job("Painting", "Line 1", "Generic, House, Construction", "3 Days", "50 Rs",true, true));
-                //Job thisJob = new Job()
+                Job thisJob = new Job(title, desc, skills, "5", jobSalary,false, false);
+                db.collection(getString(R.string.db_jobs)).add(thisJob).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        Toast.makeText(createJob.this, "Job Was Added", Toast.LENGTH_SHORT).show();
+                        Intent act = new Intent(createJob.this, EmployerJobs.class);
+                        startActivity(act);
+                    }
+                });
             }
         });
 
@@ -243,7 +278,7 @@ public class createJob extends AppCompatActivity implements LocationListener {
             String mArea = address.get(0).getSubLocality();
             String fnialAddress = builder.toString(); //This is the complete address.
 
-            addressField.setText(fnialAddress); //This will display the final address.
+            addressField.setText(mArea); //This will display the final address.
 
         } catch (IOException e) {
             // Handle IOException
