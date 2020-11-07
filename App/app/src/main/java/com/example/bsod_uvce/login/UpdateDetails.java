@@ -105,6 +105,7 @@ public class UpdateDetails extends AppCompatActivity implements LocationListener
                 dataMap.put("Location", location);
                 dataMap.put("Phone Number", mUser.getPhoneNumber());
                 dataMap.put("Jobs", null);
+                dataMap.put("Id", mUser.getUid());
                 if(!labourer)
                 {
                     db.collection("Employer").document(mUser.getUid()).set(dataMap).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -171,7 +172,7 @@ public class UpdateDetails extends AppCompatActivity implements LocationListener
         if(location.equals("0 0"))
         {
             Toast.makeText(this, "Please select your location", Toast.LENGTH_LONG).show();
-            flag = true; // Change after fixing location
+            flag = false;
         }
         return flag;
     }

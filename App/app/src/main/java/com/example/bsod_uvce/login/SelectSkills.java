@@ -99,6 +99,7 @@ public class SelectSkills extends AppCompatActivity {
             dataMap.put("Skills", skillList);
             dataMap.put("Rating", 0);
             dataMap.put("Certificates", null);
+            dataMap.put("Id", mUser.getUid());
             db.collection("Labourer").document(mUser.getUid()).set(dataMap).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
