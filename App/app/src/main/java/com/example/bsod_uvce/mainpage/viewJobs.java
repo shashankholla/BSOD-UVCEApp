@@ -10,7 +10,7 @@ import com.example.bsod_uvce.R;
 
 import java.util.ArrayList;
 
-public class viewjobs extends AppCompatActivity {
+public class viewJobs extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;

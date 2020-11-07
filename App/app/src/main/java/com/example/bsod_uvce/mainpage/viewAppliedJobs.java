@@ -18,7 +18,7 @@ public class viewAppliedJobs extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_viewjobs);
+        setContentView(R.layout.activity_view_applied_jobs);
 
         ArrayList<Job> exampleList = new ArrayList<>();
         exampleList.add(new Job("Painting", "Line 1", "Generic, House, Construction", "3 Days", "50 Rs",true, true));

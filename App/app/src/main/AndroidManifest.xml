@@ -23,7 +23,7 @@
         <activity android:name=".createJob" />
         <activity android:name=".login.UpdateDetails" />
         <activity android:name=".login.OtpActivity" />
-        <activity android:name=".mainpage.viewjobs" />
+        <activity android:name=".mainpage.viewJobs" />
         <activity android:name=".profiles.employerProfile" />
         <activity android:name=".profiles.labourProfile" />
         <activity android:name=".login.SelectSkills" />
