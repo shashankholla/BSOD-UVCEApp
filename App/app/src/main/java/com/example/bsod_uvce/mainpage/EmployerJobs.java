@@ -10,7 +10,8 @@ import com.example.bsod_uvce.R;
 
 import java.util.ArrayList;
 
-public class viewjobs extends AppCompatActivity {
+public class EmployerJobs extends AppCompatActivity {
+
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -18,7 +19,7 @@ public class viewjobs extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_viewjobs);
+        setContentView(R.layout.activity_employer_jobs);
 
         ArrayList<Job> exampleList = new ArrayList<>();
         exampleList.add(new Job("Painting", "Line 1", "Generic, House, Construction", "3 Days", "50 Rs", true, false));
@@ -34,4 +35,5 @@ public class viewjobs extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
     }
+
 }
