@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.bsod_uvce.R;
 
-public class EmplyerJobs extends AppCompatActivity {
+public class EmployerJobs extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

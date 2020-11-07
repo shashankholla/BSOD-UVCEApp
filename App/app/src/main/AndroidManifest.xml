@@ -19,7 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BSOD_UVCE">
-        <activity android:name=".mainpage.EmplyerJobs"></activity>
+        <activity android:name=".mainpage.EmployerJobs"></activity>
         <activity android:name=".createJob" />
         <activity android:name=".login.UpdateDetails" />
         <activity android:name=".login.OtpActivity" />

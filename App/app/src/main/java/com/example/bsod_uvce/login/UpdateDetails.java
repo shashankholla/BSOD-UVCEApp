@@ -35,6 +35,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bsod_uvce.MainActivity;
 import com.example.bsod_uvce.R;
+import com.example.bsod_uvce.mainpage.EmployerJobs;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
@@ -48,12 +49,14 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class UpdateDetails extends AppCompatActivity implements LocationListener{
     EditText nameText;
-    boolean labourer=false;
+    boolean labourer=true;
     TextView locationLabel;
     Button locationButton;
     TextInputLayout nameInput;
@@ -84,12 +87,7 @@ public class UpdateDetails extends AppCompatActivity implements LocationListener
         locationButton = findViewById(R.id.locationButton);
         db = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
-        locationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getLocation();
-            }
-        });
+        locationButton.setOnClickListener(view -> getLocation());
         (findViewById(R.id.nextDetails)).setOnClickListener(view -> {
             if(validate())
             {
@@ -97,13 +95,38 @@ public class UpdateDetails extends AppCompatActivity implements LocationListener
                 String location = locationLabel.getText().toString();
                 updateUserProfile(mUser);
                 String type="Labourer";
+                Map<String, Object> dataMap = new HashMap<>();
+                dataMap.put("Name", name);
+                dataMap.put("Location", location);
+                dataMap.put("Phone Number", mUser.getPhoneNumber());
+                dataMap.put("Jobs", null);
                 if(!labourer)
-                    type="Employer";
-                Intent intent = new Intent(UpdateDetails.this, SelectSkills.class);
-                intent.putExtra("Name", name);
-                intent.putExtra("Location", location);
-                intent.putExtra("Type", type);
-                startActivity(intent);
+                {
+                    db.collection("Employer").document(mUser.getUid()).set(dataMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("Success", "DocumentSnapshot successfully written!");
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("Failure", "Error writing document", e);
+
+                        }
+                    });
+                    Intent intent = new Intent(UpdateDetails.this, EmployerJobs.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(this, "You are a labourer", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(UpdateDetails.this, SelectSkills.class);
+                    intent.putExtra("Name", name);
+                    intent.putExtra("Location", location);
+                    intent.putExtra("Type", type);
+                    startActivity(intent);
+                }
             }
         });
 
