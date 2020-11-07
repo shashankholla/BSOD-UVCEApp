@@ -39,7 +39,6 @@ public class SelectSkills extends AppCompatActivity {
         name = getIntent().getStringExtra("Name");
         String location = getIntent().getStringExtra("Location");
         String type = getIntent().getStringExtra("Type");
-        profilePhotoUri = Uri.parse(getIntent().getStringExtra("Display Picture"));
 
         CompoundButton.OnCheckedChangeListener multiListener = (v, isChecked) -> {
             switch (v.getId()){
