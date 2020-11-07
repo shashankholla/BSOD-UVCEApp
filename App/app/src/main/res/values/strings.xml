@@ -14,13 +14,15 @@
     <string name="skill_exits">The skill already exits</string>
     <string name="your_skillset">Your skillset</string>
     <string name="your_rating">Your rating for this week!</string>
+    <string name="jobs_this_week">Jobs this week</string>
+    <string name="total_jobs">Total Jobs</string>
+    <string name="jobs_for_badge">Jobs for badge</string>
+    <string name="job_title">Enter Job Title</string>
+    <string name="job_desc">Enter Job Description</string>
+    <string name="salary_for_job">Salary for Job</string>
 
-    <string-array name="predef_skills">
-        <item>Cooking</item>
-        <item>Cleaning</item>
-    </string-array>    
 
-	<string name="emailPrompt">Email</string>
+    <string name="emailPrompt">Email</string>
     <string name="passwordPrompt">OTP</string>
     <string name="forgotPasswordLabel">Forgot Password?</string>
     <string name="signUpLabel1">Don\'t Have an account?</string>
