@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".login.LoginRegPage">
+    tools:context=".login.OtpActivity"
+    android:layout_marginBottom="20dp"
+    android:layout_marginTop="20dp"
+    android:paddingBottom="20dp">
     <RelativeLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
@@ -14,24 +17,24 @@
         android:padding="20dp">
 
         <TextView
-            android:id="@+id/phoneLabel"
+            android:id="@+id/otpLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
-            android:text="@string/phoneNumberPrompt"
+            android:text="@string/please_enter_your_otp"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
             android:textColor="@color/colorPrimary" />
 
         <EditText
-            android:id="@+id/phoneText"
+            android:id="@+id/otpText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/phoneLabel"
+            android:layout_below="@id/otpLabel"
             android:layout_marginTop="20dp"
             android:digits="0123456789"
             android:drawablePadding="10dp"
-            android:hint="@string/phoneNumberPrompt"
+            android:hint="@string/please_enter_your_otp"
             android:inputType="phone"
             android:maxLength="10" />
 
@@ -42,8 +45,10 @@
             android:textColor="@android:color/white"
             android:background="@drawable/next_button"
             android:layout_margin="20dp"
-            android:id="@+id/nextButton"
-            android:text="@string/next"/>
+            android:id="@+id/verifyButton"
+            android:text="@string/verify"/>
 
     </RelativeLayout>
+
+
 </RelativeLayout>

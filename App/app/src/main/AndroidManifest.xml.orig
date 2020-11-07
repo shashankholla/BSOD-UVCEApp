@@ -17,6 +17,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BSOD_UVCE">
+<<<<<<< HEAD
+        <activity android:name=".mainpage.viewjobs"></activity>
+        <activity android:name=".profiles.employerProfile">
+
+        </activity>
+        <activity android:name=".profiles.labourProfile">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+        </activity>
+        <activity android:name=".login.LoginRegPage" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.BSOD_UVCE.NoActionBar">
+=======
         <activity android:name=".login.UpdateDetails"></activity>
         <activity android:name=".login.OtpActivity" />
         <activity android:name=".mainpage.viewjobs" />
@@ -25,9 +44,8 @@
         <activity android:name=".login.LoginRegPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+>>>>>>> 6ae0a0c8dc195019709572e407693bc547e632ca
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <provider
