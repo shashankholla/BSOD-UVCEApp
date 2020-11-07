@@ -36,6 +36,7 @@ import com.example.bsod_uvce.mainpage.Job;
 import com.example.bsod_uvce.profiles.labourProfile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -62,6 +63,7 @@ public class createJob extends AppCompatActivity implements LocationListener {
     private Button getLocation;
     private int MAX_WORDS = 1;
     private Button addJob;
+    private FirebaseAuth auth;
     FirebaseFirestore db;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -200,8 +202,9 @@ public class createJob extends AppCompatActivity implements LocationListener {
 
 
 
+
                 //exampleList.add(new Job("Painting", "Line 1", "Generic, House, Construction", "3 Days", "50 Rs",true, true));
-                Job thisJob = new Job(title, desc, skills, "5", jobSalary,false, false);
+                Job thisJob = new Job(title, desc, skills, "5", jobSalary,false, false, FirebaseAuth.getInstance().getCurrentUser().getUid(), null);
                 db.collection(getString(R.string.db_jobs)).add(thisJob).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {

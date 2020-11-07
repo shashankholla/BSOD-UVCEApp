@@ -12,6 +12,8 @@ public class Job {
     public String amount;
     public boolean ifApplied;
     public boolean ifAccepted;
+    public String employerId;
+    public String acceptedLabourerId;
 
     public Job(String jobTitle, String description, String jobCategory, String jobDuration, String amount, boolean ifApplied, boolean ifAccepted
 
@@ -24,6 +26,25 @@ public class Job {
         this.ifApplied = ifApplied;
         this.ifAccepted = ifAccepted;
     }
+    public Job(String jobTitle, String description, String jobCategory, String jobDuration, String amount, boolean ifApplied, boolean ifAccepted, String employerId, String acceptedLabourerId
+
+    ){
+        this.jobTitle = jobTitle;
+        this.jobCategory = jobCategory;
+        this.description = description;
+        this.jobDuration = jobDuration;
+        this.amount = amount;
+        this.ifApplied = ifApplied;
+        this.ifAccepted = ifAccepted;
+        this.employerId = employerId;
+        this.acceptedLabourerId = acceptedLabourerId;
+    }
+
+
+
+
+
+
     public Job(String jobTitle, String description, String jobCategory, String jobDuration, String amount, boolean ifApplied, boolean ifAccepted, Drawable jobCategoryIcon){
         this.jobTitle = jobTitle;
         this.jobCategory = jobCategory;
