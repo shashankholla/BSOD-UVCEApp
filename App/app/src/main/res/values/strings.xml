@@ -90,7 +90,10 @@
     <string name="submit">Submit</string>
     <string name="description">Description</string>
 
-<!--    Dont translate this-->
+    <!--    Dont translate this-->
     <string name="db_jobs" translatable="false">jobs</string>
+    <string name="enter_your_chat_messages_here">Enter your chat messages here</string>
+    <string name="type_here">Type Here</string>
+    <string name="send">Send</string>
 
 </resources>

@@ -139,6 +139,10 @@ public class viewJobs extends AppCompatActivity {
                 intent = new Intent(viewJobs.this, Settings.class);
                 startActivity(intent);
                 break;
+            case R.id.chat:
+                intent = new Intent(viewJobs.this, ChatBox.class);
+                startActivity(intent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

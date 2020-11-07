@@ -82,6 +82,9 @@ public class EmployerJobs extends AppCompatActivity {
                 intent = new Intent(EmployerJobs.this, Settings.class);
                 startActivity(intent);
                 break;
+            case R.id.chat:
+                Toast.makeText(this, "Chyat Box", Toast.LENGTH_SHORT).show();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
