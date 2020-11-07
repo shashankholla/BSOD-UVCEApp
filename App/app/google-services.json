@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "818236149730",
+    "firebase_url": "https://bsod-firebase.firebaseio.com",
+    "project_id": "bsod-firebase",
+    "storage_bucket": "bsod-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818236149730:android:0f1867a01bcab4ab31b3bb",
+        "android_client_info": {
+          "package_name": "com.example.bsod_uvce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818236149730-mi6ojtahpi5mqp6386u8esq89e0mbbv4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD60p_y9ErofW8eRjfbxfwEkPgYnXSg73k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "818236149730-mi6ojtahpi5mqp6386u8esq89e0mbbv4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

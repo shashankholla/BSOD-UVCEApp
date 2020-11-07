@@ -4,17 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".profiles.employerProfile">
-
-<<<<<<< HEAD
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@color/black"
-        />
-
-
-=======
->>>>>>> 6ae0a0c8dc195019709572e407693bc547e632ca
+    tools:context=".login.UpdateDetails">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

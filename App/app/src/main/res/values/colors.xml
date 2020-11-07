@@ -7,5 +7,20 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+<<<<<<< HEAD
     <color name="colorTransparent">#00ffffff</color>
+=======
+
+    <!-- Got from BM -->
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#7C4DFF</color>
+    <color name="colorPrimaryLight">#C5CAE9</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#757575</color>
+    <color name="colorIcons">#FFFFFF</color>
+    <color name="colorDivider">#BDBDBD</color>
+    <color name="colorSaveButton">#5CB661</color>
+    <color name="colorLogoutButton">#DA5252</color>
+>>>>>>> 6ae0a0c8dc195019709572e407693bc547e632ca
 </resources>
