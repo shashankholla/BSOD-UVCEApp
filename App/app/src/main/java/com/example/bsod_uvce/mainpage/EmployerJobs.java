@@ -1,16 +1,23 @@
 package com.example.bsod_uvce.mainpage;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.bsod_uvce.R;
+import com.example.bsod_uvce.login.Settings;
 
 import java.util.ArrayList;
 
 public class EmployerJobs extends AppCompatActivity {
+    Toolbar toolbar;
+
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -34,5 +41,24 @@ public class EmployerJobs extends AppCompatActivity {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.settings:
+                intent = new Intent(EmployerJobs.this, Settings.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_toolbar, menu);
+        return true;
     }
 }
