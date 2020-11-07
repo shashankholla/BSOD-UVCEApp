@@ -6,7 +6,17 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
+    <string name="hello">Hello</string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="add_tags_hint">Add your skills here</string>
+    <string name="add_skill">Add skill</string>
+    <string name="skill_exits">The skill already exits</string>
+    <string name="your_skillset">Your skillset</string>
+    <string name="your_rating">Your rating for this week!</string>
+
+    <string-array name="predef_skills">
+        <item>Cooking</item>
+        <item>Cleaning</item>
+    </string-array>
 </resources>

@@ -4,7 +4,120 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".profiles.labourProfile">
+    tools:context=".profiles.labourProfile"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_account_circle_24"
+        android:id="@+id/profilePic"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/userFullname"
+        android:minHeight="150dp"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/userFullname"
+        app:layout_constraintTop_toBottomOf="@id/profilePic"
+        android:text="Hello"
+        android:textSize="25sp"
+        android:textStyle="bold"
+
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/yourrating"
+                app:layout_constraintTop_toBottomOf="@id/userFullname"
+                android:text="@string/your_rating"
+                android:textSize="25sp"
+                android:textStyle="bold"
+
+                android:textAlignment="center"
+                android:gravity="center_horizontal" />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:scaleX=".7"
+            android:scaleY=".7"
+            android:id="@+id/ratingThisWeek"
+            app:layout_constraintTop_toBottomOf="@id/yourrating"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            >
+
+        </RatingBar>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/your_skillset"
+        android:id="@+id/yourskillset"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@id/ratingThisWeek">
+
+    </TextView>
+
+    <co.lujun.androidtagview.TagContainerLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:padding="10dp"
+        app:container_enable_drag="false"
+        app:horizontal_interval="10dp"
+        app:vertical_interval="10dp"
+        app:tag_clickable="true"
+        app:tag_theme="pure_teal"
+        app:container_background_color="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/yourskillset"
+        android:id="@+id/tagcontainerLayout"
+        app:tag_enable_cross="true"
+        android:animateLayoutChanges="true"
+        />
+
+    <AutoCompleteTextView
+        android:id="@+id/add_tag_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tagcontainerLayout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/add_tag_btn"
+        android:hint="@string/add_tags_hint"/>
+    <Button
+        android:id="@+id/add_tag_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/add_tag_et"
+        app:layout_constraintTop_toBottomOf="@id/tagcontainerLayout"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/add_skill"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/certificates"
+            app:layout_constraintTop_toBottomOf="@id/add_tag_et"
+           >
+
+        </androidx.recyclerview.widget.RecyclerView>
 
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
