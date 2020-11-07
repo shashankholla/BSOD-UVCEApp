@@ -47,7 +47,7 @@ public class labourProfile extends AppCompatActivity {
         usernameTV.setText(getString(R.string.hello) + " " + username);
 
         List<String> list2 = new ArrayList<String>();
-       ArrayList awards = new ArrayList<jobAward>();
+        ArrayList awards = new ArrayList<jobAward>();
         awards.add(new jobAward("gold","First Rank raju","27/05/10"));
         awards.add(new jobAward("silver","Second Rank raju","27/05/10"));
 

@@ -1,6 +1,5 @@
 plugins {
     id 'com.android.application'
-    id 'com.google.gms.google-services'
 }
 
 android {
@@ -38,11 +37,14 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.3.1'
 <<<<<<< HEAD
     implementation 'co.lujun:androidtagview:1.1.7'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 =======
+<<<<<<< HEAD
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.recyclerview:recyclerview:1.0.0"
+=======
+>>>>>>> e584debca27beebcc896c3b736b54151b34e8bc5
     implementation 'com.google.firebase:firebase-auth:20.0.0'
+>>>>>>> 6ae0a0c8dc195019709572e407693bc547e632ca
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -52,6 +54,5 @@ dependencies {
     //Image caching and downloading library
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
->>>>>>> 6ae0a0c8dc195019709572e407693bc547e632ca
 
 }

@@ -17,18 +17,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BSOD_UVCE">
-        <activity android:name=".login.UpdateDetails"></activity>
-        <activity android:name=".login.OtpActivity" />
-        <activity android:name=".mainpage.viewjobs" />
+
+        <activity android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.BSOD_UVCE.NoActionBar">
+            ></activity>
         <activity android:name=".profiles.employerProfile" />
         <activity android:name=".profiles.labourProfile" />
-        <activity android:name=".login.LoginRegPage">
+        <activity android:name=".login.LoginRegPage" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".mainpage.viewjobs" />
+
+        <activity android:name=".login.UpdateDetails"></activity>
+        <activity
+            android:name=".login.OtpActivity"
+            android:theme="@style/Theme.BSOD_UVCE" />
+
+
+
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -40,10 +51,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.BSOD_UVCE.NoActionBar" />
+
     </application>
 
 </manifest>
