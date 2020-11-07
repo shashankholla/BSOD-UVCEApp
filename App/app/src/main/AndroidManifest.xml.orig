@@ -2,14 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.bsod_uvce">
 
+<<<<<<< HEAD
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
 
+=======
+>>>>>>> c79ca57ba2c75e38d69602dfccf7789e04f84e7c
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,35 +23,46 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BSOD_UVCE">
 <<<<<<< HEAD
-        <activity android:name=".mainpage.viewjobs"></activity>
-        <activity android:name=".profiles.employerProfile">
-
-        </activity>
-        <activity android:name=".profiles.labourProfile">
+        <activity android:name=".createJob" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
-
         </activity>
-        <activity android:name=".login.LoginRegPage" />
+=======
+        <activity android:name=".mainpage.viewAppliedJobs"></activity>
+>>>>>>> c79ca57ba2c75e38d69602dfccf7789e04f84e7c
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.BSOD_UVCE.NoActionBar">
+<<<<<<< HEAD
+
+        </activity>
+        <activity android:name=".profiles.employerProfile" />
+        <activity android:name=".profiles.labourProfile" />
+        <activity android:name=".login.LoginRegPage"/>
+
+
 =======
-        <activity android:name=".login.UpdateDetails"></activity>
-        <activity android:name=".login.OtpActivity" />
-        <activity android:name=".mainpage.viewjobs" />
+            >
+        </activity>
         <activity android:name=".profiles.employerProfile" />
         <activity android:name=".profiles.labourProfile" />
         <activity android:name=".login.LoginRegPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
->>>>>>> 6ae0a0c8dc195019709572e407693bc547e632ca
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+>>>>>>> c79ca57ba2c75e38d69602dfccf7789e04f84e7c
+        <activity android:name=".mainpage.viewjobs" />
+        <activity android:name=".login.UpdateDetails" />
+        <activity
+            android:name=".login.OtpActivity"
+            android:theme="@style/Theme.BSOD_UVCE" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -57,11 +73,17 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.BSOD_UVCE.NoActionBar" />
     </application>
+<<<<<<< HEAD
+=======
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+>>>>>>> c79ca57ba2c75e38d69602dfccf7789e04f84e7c
 
 </manifest>

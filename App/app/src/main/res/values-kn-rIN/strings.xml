@@ -51,4 +51,12 @@
     <string name="employerPrompt">ಉದ್ಯೋಗದಾತ</string>
     <string name="please_enter_your_otp">ದಯವಿಟ್ಟು ನಿಮ್ಮ ಒಟಿಪಿ ನಮೂದಿಸಿ</string>
     <string name="verify">ಪರಿಶೀಲಿಸಿ</string>
+    <string name="hello">ನಮಸ್ಕಾರ</string>
+    <string name="creatorLabel">ನಾಗೇಂದ್ರ ಕುಮಾರ್ ಜಮದಗ್ನಿ ರಚಿಸಿದ್ದಾರೆ</string>
+    <string name="jobs_this_week">ಈ ವಾರದ ಉದ್ಯೋಗಗಳು</string>
+    <string name="total_jobs">ಒಟ್ಟು ಉದ್ಯೋಗಗಳು</string>
+    <string name="jobs_for_badge">"ಬ್ಯಾಡ್ಜ್ಗಾಗಿ ಉದ್ಯೋಗಗಳು "</string>
+    <string name="job_title">ಉದ್ಯೋಗ ಶೀರ್ಷಿಕೆಯನ್ನು ನಮೂದಿಸಿ</string>
+    <string name="job_desc">"ಉದ್ಯೋಗ ವಿವರಣೆಯನ್ನು ನಮೂದಿಸಿ "</string>
+    <string name="salary_for_job">"ಉದ್ಯೋಗಕ್ಕೆ ಸಂಬಳ "</string>
 </resources>
