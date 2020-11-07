@@ -20,14 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BSOD_UVCE">
         <activity android:name=".login.Settings"></activity>
-        <activity android:name=".mainpage.EmployerJobs">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+        <activity android:name=".mainpage.EmployerJobs"/>
         <activity android:name=".createJob" />
         <activity android:name=".login.UpdateDetails" />
         <activity android:name=".login.OtpActivity" />
@@ -36,7 +29,11 @@
         <activity android:name=".profiles.labourProfile" />
         <activity android:name=".login.SelectSkills" />
         <activity android:name=".login.LoginRegPage">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <provider

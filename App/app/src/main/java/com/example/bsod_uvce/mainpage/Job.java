@@ -14,8 +14,9 @@ public class Job {
     public boolean ifAccepted;
     public String employerId;
     public String acceptedLabourerId;
+    public String location;
 
-    public Job(String jobTitle, String description, String jobCategory, String jobDuration, String amount, boolean ifApplied, boolean ifAccepted
+    public Job(String jobTitle, String description, String jobCategory, String jobDuration, String amount, boolean ifApplied, boolean ifAccepted, String location
 
     ){
         this.jobTitle = jobTitle;
@@ -25,8 +26,10 @@ public class Job {
         this.amount = amount;
         this.ifApplied = ifApplied;
         this.ifAccepted = ifAccepted;
+        this.location=location;
     }
-    public Job(String jobTitle, String description, String jobCategory, String jobDuration, String amount, boolean ifApplied, boolean ifAccepted, String employerId, String acceptedLabourerId
+    public Job(String jobTitle, String description, String jobCategory, String jobDuration, String amount, boolean ifApplied, boolean ifAccepted, String employerId, String acceptedLabourerId,
+               String location
 
     ){
         this.jobTitle = jobTitle;
@@ -38,14 +41,10 @@ public class Job {
         this.ifAccepted = ifAccepted;
         this.employerId = employerId;
         this.acceptedLabourerId = acceptedLabourerId;
+        this.location=location;
     }
 
-
-
-
-
-
-    public Job(String jobTitle, String description, String jobCategory, String jobDuration, String amount, boolean ifApplied, boolean ifAccepted, Drawable jobCategoryIcon){
+    public Job(String jobTitle, String description, String jobCategory, String jobDuration, String amount, boolean ifApplied, boolean ifAccepted, Drawable jobCategoryIcon, String location){
         this.jobTitle = jobTitle;
         this.jobCategory = jobCategory;
         this.description = description;
@@ -54,7 +53,10 @@ public class Job {
         this.jobCategoryIcon = jobCategoryIcon;
         this.ifApplied = ifApplied;
         this.ifAccepted = ifAccepted;
+        this.location=location;
     }
+    public Job()
+    {}
     public String getJobTitle() {
         return jobTitle;
     }

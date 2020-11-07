@@ -82,7 +82,7 @@ public class createJob extends AppCompatActivity implements LocationListener {
         jobDesc = findViewById(R.id.job_desc);
         addressField = findViewById(R.id.my_location);
         salary = findViewById(R.id.salary);
-
+        location = findViewById(R.id.my_location);
 
         getLocation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,12 +199,12 @@ public class createJob extends AppCompatActivity implements LocationListener {
                 String desc = jobDesc.getText().toString();
                 String jobSalary = salary.getText().toString();
                 String skills = list2.toString();
-
+                String mylocation = location.getText().toString();
 
 
 
                 //exampleList.add(new Job("Painting", "Line 1", "Generic, House, Construction", "3 Days", "50 Rs",true, true));
-                Job thisJob = new Job(title, desc, skills, "5", jobSalary,false, false, FirebaseAuth.getInstance().getCurrentUser().getUid(), null);
+                Job thisJob = new Job(title, desc, skills, "5", jobSalary,false, false, FirebaseAuth.getInstance().getCurrentUser().getUid(), null, mylocation);
                 db.collection(getString(R.string.db_jobs)).add(thisJob).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
@@ -281,7 +281,7 @@ public class createJob extends AppCompatActivity implements LocationListener {
             String mArea = address.get(0).getSubLocality();
             String fnialAddress = builder.toString(); //This is the complete address.
 
-            addressField.setText(mArea); //This will display the final address.
+            addressField.setText(mLocality); //This will display the final address.
 
         } catch (IOException e) {
             // Handle IOException
