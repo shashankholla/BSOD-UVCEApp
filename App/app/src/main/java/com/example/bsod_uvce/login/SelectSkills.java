@@ -14,7 +14,7 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.example.bsod_uvce.R;
-import com.example.bsod_uvce.mainpage.viewjobs;
+import com.example.bsod_uvce.mainpage.viewJobs;
 import com.example.bsod_uvce.profiles.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -110,7 +110,7 @@ public class SelectSkills extends AppCompatActivity {
                 Log.w("Failure", "Error writing document", e);
             }
             });
-            Intent intent = new Intent(SelectSkills.this, viewjobs.class);
+            Intent intent = new Intent(SelectSkills.this, viewJobs.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
     }
