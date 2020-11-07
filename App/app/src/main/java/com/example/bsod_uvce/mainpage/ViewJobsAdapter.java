@@ -1,8 +1,6 @@
 package com.example.bsod_uvce.mainpage;
 
 import android.os.Build;
-import android.transition.AutoTransition;
-import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.AutoTransition;
+import androidx.transition.TransitionManager;
 
 import com.example.bsod_uvce.R;
 
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class ViewJobsAdapter extends RecyclerView.Adapter<ViewJobsAdapter.ExampleViewHolder> {
     private ArrayList<Job> mExampleList;
-
+    RecyclerView rv;
     public static class ExampleViewHolder extends RecyclerView.ViewHolder {
         public ImageView mImageView;
         public TextView mTextView1;
@@ -43,11 +43,14 @@ public class ViewJobsAdapter extends RecyclerView.Adapter<ViewJobsAdapter.Exampl
             mTextView4 = itemView.findViewById(R.id.amount);
             mTextView5 = itemView.findViewById(R.id.description);
             expandBtn = itemView.findViewById(R.id.expandBtn);
+            cv = itemView.findViewById(R.id.cardView);
+            constraintLayout = itemView.findViewById(R.id.expandableView);
         }
     }
 
-    public ViewJobsAdapter(ArrayList<Job> exampleList) {
+    public ViewJobsAdapter(ArrayList<Job> exampleList, RecyclerView rv) {
         mExampleList = exampleList;
+        this.rv = rv;
     }
 
     @Override
@@ -58,8 +61,8 @@ public class ViewJobsAdapter extends RecyclerView.Adapter<ViewJobsAdapter.Exampl
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                Toast.makeText(parent.getContext(),"OnClick works", Toast.LENGTH_LONG).show();
-                /*if(evh.constraintLayout.getVisibility() == View.GONE){
+                Toast.makeText(parent.getContext(),"OnClick workshere", Toast.LENGTH_LONG).show();
+                if(evh.constraintLayout.getVisibility() == View.GONE){
                     TransitionManager.beginDelayedTransition(evh.cv, new AutoTransition());
                     evh.constraintLayout.setVisibility(View.VISIBLE);
                     evh.expandBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_keyboard_arrow_up_black_24dp, 0, 0, 0);
@@ -68,7 +71,7 @@ public class ViewJobsAdapter extends RecyclerView.Adapter<ViewJobsAdapter.Exampl
                     TransitionManager.beginDelayedTransition(rv, new AutoTransition());
                     evh.constraintLayout.setVisibility(View.GONE);
                     evh.expandBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_keyboard_arrow_down_black_24dp, 0, 0, 0);
-                }*/
+                }
             }
         });
 

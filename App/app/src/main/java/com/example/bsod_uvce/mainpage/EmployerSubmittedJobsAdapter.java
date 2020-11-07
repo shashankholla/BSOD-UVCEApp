@@ -20,7 +20,7 @@ import com.example.bsod_uvce.R;
 import java.util.ArrayList;
 
 
-public class ViewAppliedJobsAdapter extends RecyclerView.Adapter<ViewAppliedJobsAdapter.ExampleViewHolder> {
+public class EmployerSubmittedJobsAdapter extends RecyclerView.Adapter<EmployerSubmittedJobsAdapter.ExampleViewHolder> {
     private ArrayList<Job> mExampleList;
     RecyclerView rv;
     public static class ExampleViewHolder extends RecyclerView.ViewHolder {
@@ -48,7 +48,7 @@ public class ViewAppliedJobsAdapter extends RecyclerView.Adapter<ViewAppliedJobs
         }
     }
 
-    public ViewAppliedJobsAdapter(ArrayList<Job> exampleList, RecyclerView rv) {
+    public EmployerSubmittedJobsAdapter(ArrayList<Job> exampleList, RecyclerView rv) {
         mExampleList = exampleList;
         this.rv = rv;
     }

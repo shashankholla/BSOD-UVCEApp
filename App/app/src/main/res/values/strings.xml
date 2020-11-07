@@ -85,4 +85,8 @@
         <item>Cleaning</item>
     </string-array>
     <string name="add_skill">Add skill</string>
+    <string name="skills_needed">Skills needed for this job</string>
+    <string name="set_location_hint">Type your location</string>
+    <string name="submit">Submit</string>
+    <string name="description">Description</string>
 </resources>

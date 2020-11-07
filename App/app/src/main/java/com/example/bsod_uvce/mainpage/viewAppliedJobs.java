@@ -29,7 +29,7 @@ public class viewAppliedJobs extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new ViewAppliedJobsAdapter(exampleList);
+        mAdapter = new ViewAppliedJobsAdapter(exampleList, mRecyclerView);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
