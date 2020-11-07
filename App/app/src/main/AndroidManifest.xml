@@ -5,9 +5,9 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
@@ -19,14 +19,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BSOD_UVCE">
+        <activity android:name=".mainpage.EmplyerJobs"></activity>
         <activity android:name=".createJob" />
-        <activity android:name=".login.UpdateDetails"></activity>
+        <activity android:name=".login.UpdateDetails" />
         <activity android:name=".login.OtpActivity" />
         <activity android:name=".mainpage.viewjobs" />
         <activity android:name=".profiles.employerProfile" />
         <activity android:name=".profiles.labourProfile" />
+        <activity android:name=".login.SelectSkills" />
         <activity android:name=".login.LoginRegPage">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

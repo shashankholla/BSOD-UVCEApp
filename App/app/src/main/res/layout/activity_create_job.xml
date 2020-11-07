@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/job_title"
         android:id="@+id/job_title"
-        app:layout_constraintTop_toBottomOf=""
+        app:layout_constraintTop_toTopOf="parent"
         />
 
     <EditText
