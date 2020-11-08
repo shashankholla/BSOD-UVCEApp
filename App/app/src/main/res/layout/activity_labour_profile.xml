@@ -78,7 +78,7 @@
                 android:gravity="center_vertical|left"
                 android:layout_gravity="center"
                 android:textSize="30sp"
-                android:text="0"/>
+                android:text="1"/>
 
         </LinearLayout>
         <View
@@ -104,7 +104,7 @@
                 android:gravity="center_vertical|left"
                 android:layout_gravity="center"
                 android:textSize="30sp"
-                android:text="0"/>
+                android:text="1"/>
 
         </LinearLayout>
         <View
@@ -130,7 +130,7 @@
                 android:gravity="center_vertical|left"
                 android:layout_gravity="center"
                 android:textSize="30sp"
-                android:text="0"/>
+                android:text="10"/>
 
         </LinearLayout>
 

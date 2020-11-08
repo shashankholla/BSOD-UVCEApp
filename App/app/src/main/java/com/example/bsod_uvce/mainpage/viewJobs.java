@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.bsod_uvce.R;
 import com.example.bsod_uvce.login.Settings;
+import com.example.bsod_uvce.profiles.labourProfile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -151,6 +152,7 @@ public class viewJobs extends AppCompatActivity implements ViewJobsAdapter.OnCli
                 intent = new Intent(viewJobs.this, ChatBox.class);
                 startActivity(intent);
                 break;
+
         }
         return super.onOptionsItemSelected(item);
     }

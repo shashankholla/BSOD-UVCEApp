@@ -21,6 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bsod_uvce.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,8 @@ public class labourProfile extends AppCompatActivity {
     private TagContainerLayout mTagContainerLayout;
     private int MAX_WORDS = 1;
     private Button addSkillBtn;
-    private String username="Shashank";
+    private String username;
+    FirebaseUser user;
     private RecyclerView certiLV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +46,15 @@ public class labourProfile extends AppCompatActivity {
         mTagContainerLayout = (TagContainerLayout) findViewById(R.id.tagcontainerLayout);
         addSkillBtn = findViewById(R.id.add_tag_btn);
         addTagsET = findViewById(R.id.add_tag_et);
+        user = FirebaseAuth.getInstance().getCurrentUser();
         usernameTV = findViewById(R.id.userFullname);
-        usernameTV.setText(getString(R.string.hello) + " " + username);
+        usernameTV.setText(getString(R.string.hello) + " " + user.getDisplayName());
 
         List<String> list2 = new ArrayList<String>();
         ArrayList awards = new ArrayList<jobAward>();
-        awards.add(new jobAward("gold","First Rank raju","27/05/10"));
-        awards.add(new jobAward("silver","Second Rank raju","27/05/10"));
+        awards.add(new jobAward("gold","First Job! First Salary!","27/05/10"));
 
+        list2.add("Cooking");
         certiLV = findViewById(R.id.certificates);
         CertiAdapter certiAdapter = new CertiAdapter(this, awards);
         certiLV.setLayoutManager(new LinearLayoutManager(this));

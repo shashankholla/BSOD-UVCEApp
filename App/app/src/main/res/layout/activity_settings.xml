@@ -18,6 +18,15 @@
             android:id="@+id/profilePictureSettings"
             android:contentDescription="@string/DPContentDescriptior"
             android:layout_margin="20dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/view_achievements"
+            android:background="@drawable/next_button"
+            android:textColor="@android:color/white"
+            android:id="@+id/achievements"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

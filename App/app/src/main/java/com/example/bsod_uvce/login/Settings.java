@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bsod_uvce.R;
+import com.example.bsod_uvce.profiles.labourProfile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -56,6 +57,13 @@ public class Settings extends AppCompatActivity {
         logoutButton = findViewById(R.id.logoutButton);
         saveButton = findViewById(R.id.saveButton);
         profilePicture = findViewById(R.id.profilePictureSettings);
+        findViewById(R.id.achievements).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Settings.this, labourProfile.class);
+                startActivity(i);
+            }
+        });
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
         storageReference = FirebaseStorage.getInstance().getReference();
