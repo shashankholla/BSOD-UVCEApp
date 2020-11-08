@@ -1,6 +1,7 @@
 package com.example.bsod_uvce.mainpage;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 public class EmployerSubmittedJobsAdapter extends RecyclerView.Adapter<EmployerSubmittedJobsAdapter.ExampleViewHolder> {
     private ArrayList<Job> mExampleList;
     RecyclerView rv;
+    Context context;
     public OnClickInMyAdapterListener myActivityInterface;
     public interface OnClickInMyAdapterListener {
         void onAccepted(String jobId);
@@ -64,6 +66,7 @@ public class EmployerSubmittedJobsAdapter extends RecyclerView.Adapter<EmployerS
     public EmployerSubmittedJobsAdapter(Context context, ArrayList<Job> exampleList, RecyclerView rv, EmployerSubmittedJobsAdapter.OnClickInMyAdapterListener myAdapterListener) {
         mExampleList = exampleList;
         this.rv = rv;
+        this.context = context;
         Toast.makeText(context,"OnClick workshere1", Toast.LENGTH_LONG).show();
         this.myActivityInterface = myAdapterListener;
     }
@@ -97,11 +100,11 @@ public class EmployerSubmittedJobsAdapter extends RecyclerView.Adapter<EmployerS
     public void onBindViewHolder(ExampleViewHolder holder, int position) {
         Job currentItem = mExampleList.get(position);
 
-        holder.mTextView1.setText(currentItem.getJobTitle());
-        holder.mTextView2.setText(currentItem.getJobCategory());
-        holder.mTextView3.setText(currentItem.getJobDuration());
-        holder.mTextView4.setText(currentItem.getAmount());
-        holder.mTextView5.setText(currentItem.getDescription());
+        holder.mTextView1.setText(context.getString(R.string.title)+ ":" + currentItem.getJobTitle());
+        holder.mTextView2.setText(context.getString(R.string.skills_needed) + ":" + currentItem.getJobCategory());
+        holder.mTextView3.setText(context.getString(R.string.job_duration) + ":" + currentItem.getJobDuration());
+        holder.mTextView4.setText(context.getString(R.string.salary_for_job) + ":" + currentItem.getAmount());
+        holder.mTextView5.setText(context.getString(R.string.job_desc) + ":" + currentItem.getDescription());
         holder.acceptJob.setVisibility(View.GONE);
         holder.chatBtn.setVisibility(View.GONE);
         if(currentItem.ifApplied){
@@ -120,6 +123,14 @@ public class EmployerSubmittedJobsAdapter extends RecyclerView.Adapter<EmployerS
             public void onClick(View v) {
                 accept(currentItem.jobId);
 
+            }
+        });
+
+        holder.chatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, ChatBox.class);
+                context.startActivity(i);
             }
         });
     }

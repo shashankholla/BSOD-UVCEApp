@@ -99,5 +99,6 @@
     <string name="accept">Accept</string>
     <string name="great_talk">Great! You can now chat.</string>
     <string name="has_applied">has applied</string>
-
+    <string name="job_duration">Duration</string>
+    <string name="title">Title</string>
 </resources>
