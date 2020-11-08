@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".mainpage.ChatBox">
-    <TextView
-        android:id="@+id/chatMessageBox"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatRV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/chatTextBox"
@@ -16,7 +16,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:gravity="bottom"
-        android:hint="@string/enter_your_chat_messages_here"
+
         android:textAlignment="gravity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

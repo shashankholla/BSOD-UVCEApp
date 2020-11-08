@@ -2,6 +2,8 @@ package com.example.bsod_uvce.mainpage;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -16,23 +18,32 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class ChatBox extends AppCompatActivity {
     private DatabaseReference myDatabase;
     EditText myEditText;
     TextView myText;
-
+    RecyclerView rv;
+    private RecyclerView.LayoutManager mLayoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_box);
         myEditText = findViewById(R.id.chatTextBox);
-        myText = findViewById(R.id.chatMessageBox);
+        ArrayList<String> msgArray = new ArrayList<String>();
+        rv = findViewById(R.id.chatRV);
+        mLayoutManager = new LinearLayoutManager(this);
+        rv.setLayoutManager(mLayoutManager);
+        chatAdapter cA = new chatAdapter(msgArray,rv );
+        rv.setAdapter(cA);
+       // myText = findViewById(R.id.chatMessageBox);
         myDatabase = FirebaseDatabase.getInstance().getReference("Messages");
         myDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                msgArray.clear();
                 String messageText = snapshot.getValue().toString();
                 messageText=messageText.replaceAll("\\{","").replaceAll("\\}", "");
                 Log.e("Text", messageText);
@@ -40,9 +51,14 @@ public class ChatBox extends AppCompatActivity {
                 String finalMessage="";
                 for(String message: messages)
                 {
-                    finalMessage=message+finalMessage+"\n";
+
+                    msgArray.add(message.split("=")[1]);
+                 //   finalMessage=message+finalMessage+"\n";
+
                 }
-                myText.setText(finalMessage);
+                cA.notifyDataSetChanged();
+
+               // myText.setText(finalMessage);
             }
 
             @Override
