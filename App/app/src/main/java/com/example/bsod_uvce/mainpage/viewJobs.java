@@ -56,7 +56,8 @@ public class viewJobs extends AppCompatActivity implements ViewJobsAdapter.OnCli
         user = auth.getCurrentUser();
         jobList = new ArrayList<>();
         ArrayList<Job> exampleList = new ArrayList<>();
-        getLocation();
+        if(user!=null)
+            getLocation();
 //        exampleList.add(new Job("Painting", "Line 1", "Generic, House, Construction", "3 Days", "50 Rs", true, false,"Bangalore"));
 //        exampleList.add(new Job("Pipe Repair", "Line 3", "Plumbing", "3 Days", "50 Rs", false, false,"Bangalore"));
 //        exampleList.add(new Job("Construction", "Line 5", "Construction, House", "3 Days", "50 Rs", true, true,"Bangalore"));
