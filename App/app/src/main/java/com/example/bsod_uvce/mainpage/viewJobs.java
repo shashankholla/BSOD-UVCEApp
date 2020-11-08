@@ -59,10 +59,6 @@ public class viewJobs extends AppCompatActivity implements ViewJobsAdapter.OnCli
         ArrayList<Job> exampleList = new ArrayList<>();
         if(user!=null)
             getLocation();
-//        exampleList.add(new Job("Painting", "Line 1", "Generic, House, Construction", "3 Days", "50 Rs", true, false,"Bangalore"));
-//        exampleList.add(new Job("Pipe Repair", "Line 3", "Plumbing", "3 Days", "50 Rs", false, false,"Bangalore"));
-//        exampleList.add(new Job("Construction", "Line 5", "Construction, House", "3 Days", "50 Rs", true, true,"Bangalore"));
-//        exampleList.add(new Job("TV Repair", "Line 7", "Electricals, Electronics", "3 Days", "50 Rs", false, false,"Bangalore"));
 
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
@@ -86,7 +82,16 @@ public class viewJobs extends AppCompatActivity implements ViewJobsAdapter.OnCli
                 {
                     DocumentSnapshot document = task.getResult();
                     myLocation = document.getData().get("Location").toString();
-                    getJobs();
+                    db.collection("jobs")
+                            .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                                @Override
+                                public void onEvent(@Nullable QuerySnapshot value,
+                                                    @Nullable FirebaseFirestoreException e) {
+
+
+                                    getJobs();
+                                }
+                            });
                 }
             }
         });

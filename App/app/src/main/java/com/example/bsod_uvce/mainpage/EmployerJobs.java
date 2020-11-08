@@ -24,6 +24,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.annotations.Nullable;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -40,7 +43,7 @@ public class EmployerJobs extends AppCompatActivity implements EmployerSubmitted
     FirebaseFirestore db;
     FirebaseUser user;
     FirebaseAuth auth;
-
+    ArrayList<Job> exampleList;
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -53,9 +56,21 @@ public class EmployerJobs extends AppCompatActivity implements EmployerSubmitted
         auth=FirebaseAuth.getInstance();
         user=auth.getCurrentUser();
         db=FirebaseFirestore.getInstance();
-        ArrayList<Job> exampleList = new ArrayList<>();
+       exampleList  = new ArrayList<>();
+
+        CollectionReference docRef = db.collection("jobs");
 
 
+        db.collection("jobs")
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value,
+                                        @Nullable FirebaseFirestoreException e) {
+
+
+                      exampleList = getJobs();
+                    }
+                });
         exampleList = getJobs();
         Toast.makeText(this, "EmployerJobs", Toast.LENGTH_SHORT).show();
 
@@ -149,7 +164,7 @@ public class EmployerJobs extends AppCompatActivity implements EmployerSubmitted
         this.db.collection("jobs").document(jobId).update("ifAccepted", true).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                getJobs();
+
             }
         });
     }

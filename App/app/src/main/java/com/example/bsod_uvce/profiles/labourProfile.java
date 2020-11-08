@@ -1,5 +1,6 @@
 package com.example.bsod_uvce.profiles;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -21,10 +23,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bsod_uvce.R;
+import com.example.bsod_uvce.mainpage.Job;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import co.lujun.androidtagview.TagContainerLayout;
@@ -37,6 +47,8 @@ public class labourProfile extends AppCompatActivity {
     private int MAX_WORDS = 1;
     private Button addSkillBtn;
     private String username;
+    FirebaseFirestore db;
+    FirebaseAuth auth;
     FirebaseUser user;
     private RecyclerView certiLV;
     @Override
@@ -49,6 +61,10 @@ public class labourProfile extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         usernameTV = findViewById(R.id.userFullname);
         usernameTV.setText(getString(R.string.hello) + " " + user.getDisplayName());
+        auth=FirebaseAuth.getInstance();
+        user=auth.getCurrentUser();
+        db=FirebaseFirestore.getInstance();
+        getJobs();
 
         List<String> list2 = new ArrayList<String>();
         ArrayList awards = new ArrayList<jobAward>();
@@ -149,6 +165,46 @@ public class labourProfile extends AppCompatActivity {
         });
 
     }
+
+    private void getJobs()
+    {
+
+        db.collection("jobs")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful())
+                {   int applied = 0;
+                    int accepted = 0;
+                    for(QueryDocumentSnapshot document: task.getResult())
+                    {
+                        if(document.getData().get("acceptedLabourerId") != null)
+                        {String s = (String) document.getData().get("acceptedLabourerId");
+                        if(s.compareTo(user.getUid()) == 0) {
+                            applied += 1;
+                            if ((boolean) document.getData().get("ifAccepted")) {
+                                accepted += 1;
+                            }
+                        }
+                        }
+
+
+                    }
+                    TextView appliedTV = findViewById(R.id.applied);
+                    appliedTV.setText(String.valueOf(applied));
+
+                    TextView acceptedTV = findViewById(R.id.accepted);
+                    acceptedTV.setText(String.valueOf(accepted));
+                }
+                else
+                {
+                    Log.e("Result", "Fail");
+                }
+            }
+        });
+    }
+
+
 
     private int countWords(String s) {
         String trim = s.trim();

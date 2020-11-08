@@ -40,7 +40,7 @@ public class ChatBox extends AppCompatActivity {
                 String finalMessage="";
                 for(String message: messages)
                 {
-                    finalMessage=finalMessage+message+"\n";
+                    finalMessage=message+finalMessage+"\n";
                 }
                 myText.setText(finalMessage);
             }
