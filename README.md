@@ -41,7 +41,8 @@ Team
   <img width="250" src="images\image6.png" />
   <img width="250" src="images\image7.gif" />
 
-</p>
+</p>This app can be extended to allow organizations to conduct skill development sessions, workshops and training sessions to the workers. - The Task Score of the workers can be used as a category for the eligibility. 
+
 
 
 # Rating system
@@ -83,7 +84,7 @@ Team
 
 
 <p align="center">
-  	<img width="250" src="images\image10.png" />
+  	<img width="250" src="images\image10.jpg" />
   	<img width="250" src="images\image11.png" />
   	<img width="250" src="images\image13.png" />
 	<img width="250" src="images\image14.png" />
