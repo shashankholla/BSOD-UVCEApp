@@ -31,14 +31,14 @@ Team
 
 
 <p align="center">
-  <img width="250" src="images\image5.png" />
+  <img width="512" src="images\image5.png" />
 </p>
 
 # TechStack
 
 <p align="center">
   <img width="250" src="images\image12.gif" />
-  <img width="250" src="images\image6.png" />
+  <img width="125" src="images\image6.png" />
   <img width="250" src="images\image7.gif" />
 
 </p>This app can be extended to allow organizations to conduct skill development sessions, workshops and training sessions to the workers. - The Task Score of the workers can be used as a category for the eligibility. 
