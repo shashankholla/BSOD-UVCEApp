@@ -15,7 +15,7 @@ public class Job {
     public String employerId;
     public String acceptedLabourerId;
     public String location;
-
+    public String jobId;
     public Job(String jobTitle, String description, String jobCategory, String jobDuration, String amount, boolean ifApplied, boolean ifAccepted, String location
 
     ){

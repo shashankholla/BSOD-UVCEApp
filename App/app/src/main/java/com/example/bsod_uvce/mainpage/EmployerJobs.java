@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,9 +31,11 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class EmployerJobs extends AppCompatActivity {
+public class EmployerJobs extends AppCompatActivity implements EmployerSubmittedJobsAdapter.OnClickInMyAdapterListener {
     Toolbar toolbar;
     FirebaseFirestore db;
     FirebaseUser user;
@@ -51,15 +54,19 @@ public class EmployerJobs extends AppCompatActivity {
         user=auth.getCurrentUser();
         db=FirebaseFirestore.getInstance();
         ArrayList<Job> exampleList = new ArrayList<>();
+
+
         exampleList = getJobs();
-        exampleList.add(new Job("Painting", "Line 1", "Generic, House, Construction", "3 Days", "50 Rs",true, true, "Bangalore"));
-        exampleList.add(new Job("Pipe Repair", "Line 3", "Plumbing", "3 Days", "50 Rs", false, false,"Bangalore"));
-        exampleList.add(new Job("Construction", "Line 5", "Construction, House", "3 Days", "50 Rs", false, false,"Bangalore"));
-        exampleList.add(new Job("TV Repair", "Line 7", "Electricals, Electronics", "3 Days", "50 Rs", true, false,"Bangalore"));
+        Toast.makeText(this, "EmployerJobs", Toast.LENGTH_SHORT).show();
+
+//        exampleList.add(new Job("Painting", "Line 1", "Generic, House, Construction", "3 Days", "50 Rs",true, true, "Bangalore"));
+//        exampleList.add(new Job("Pipe Repair", "Line 3", "Plumbing", "3 Days", "50 Rs", false, false,"Bangalore"));
+//        exampleList.add(new Job("Construction", "Line 5", "Construction, House", "3 Days", "50 Rs", false, false,"Bangalore"));
+//        exampleList.add(new Job("TV Repair", "Line 7", "Electricals, Electronics", "3 Days", "50 Rs", true, false,"Bangalore"));
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new EmployerSubmittedJobsAdapter(exampleList, mRecyclerView);
+        mAdapter = new EmployerSubmittedJobsAdapter(this, exampleList, mRecyclerView, this);
         db = FirebaseFirestore.getInstance();
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
@@ -83,7 +90,7 @@ public class EmployerJobs extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.chat:
-                Toast.makeText(this, "Chyat Box", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Chat Box", Toast.LENGTH_SHORT).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -106,6 +113,7 @@ public class EmployerJobs extends AppCompatActivity {
                     for(QueryDocumentSnapshot document: task.getResult())
                     {
                         Job newJob = new Job();
+                        newJob.jobId = document.getId();
                         newJob.location=(String)document.getData().get("location");
                         newJob.jobTitle=(String)document.getData().get("jobTitle");
                         newJob.description=(String)document.getData().get("description");
@@ -120,7 +128,7 @@ public class EmployerJobs extends AppCompatActivity {
                         Log.e("Result", document.getId()+"+>"+newJob.toString());
                         jobList.add(newJob);
                     }
-                    mAdapter = new EmployerSubmittedJobsAdapter(jobList, mRecyclerView);
+                    mAdapter = new EmployerSubmittedJobsAdapter(getApplicationContext(), jobList, mRecyclerView, EmployerJobs.this);
                     mRecyclerView.setLayoutManager(mLayoutManager);
                     mRecyclerView.setAdapter(mAdapter);
                 }
@@ -131,5 +139,18 @@ public class EmployerJobs extends AppCompatActivity {
             }
         });
         return jobList;
+    }
+
+    @Override
+    public void onAccepted(String jobId) {
+        Map<String, Boolean> userMap = new HashMap<>();
+        userMap.put("ifApplied", true);
+        Toast.makeText(this, jobId, Toast.LENGTH_SHORT).show();
+        this.db.collection("jobs").document(jobId).update("ifAccepted", true).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                getJobs();
+            }
+        });
     }
 }

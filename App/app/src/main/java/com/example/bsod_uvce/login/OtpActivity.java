@@ -99,8 +99,16 @@ public class OtpActivity extends AppCompatActivity {
 
     private void verifyCode(String code)
     {
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationCode, code);
-        signInTheUserByCredential(credential);
+
+
+        try {
+            PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationCode, code);
+            signInTheUserByCredential(credential);
+        }catch (Exception e){
+            Toast toast = Toast.makeText(this, "Verification Code is wrong", Toast.LENGTH_SHORT);
+
+            toast.show();
+        }
     }
 
     private void signInTheUserByCredential(PhoneAuthCredential credential) {

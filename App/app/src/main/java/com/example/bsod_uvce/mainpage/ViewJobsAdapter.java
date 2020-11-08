@@ -1,5 +1,6 @@
 package com.example.bsod_uvce.mainpage;
 
+import android.content.Context;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 public class ViewJobsAdapter extends RecyclerView.Adapter<ViewJobsAdapter.ExampleViewHolder> {
     private ArrayList<Job> mExampleList;
     RecyclerView rv;
+    public OnClickInMyAdapterListener  myActivityInterface;
     public static class ExampleViewHolder extends RecyclerView.ViewHolder {
         public ImageView mImageView;
         public TextView mTextView1;
@@ -31,6 +33,9 @@ public class ViewJobsAdapter extends RecyclerView.Adapter<ViewJobsAdapter.Exampl
         public TextView mTextView4;
         public TextView mTextView5;
         public Button expandBtn;
+        public TextView mStatus;
+        public Button acceptJob;
+        public Button chatBtn;
         public View constraintLayout;
         CardView cv;
 
@@ -43,25 +48,30 @@ public class ViewJobsAdapter extends RecyclerView.Adapter<ViewJobsAdapter.Exampl
             mTextView4 = itemView.findViewById(R.id.amount);
             mTextView5 = itemView.findViewById(R.id.description);
             expandBtn = itemView.findViewById(R.id.expandBtn);
+            acceptJob = itemView.findViewById(R.id.acceptBtn);
+            mStatus = itemView.findViewById(R.id.emplyorStatus);
+            chatBtn = itemView.findViewById(R.id.startChat);
             cv = itemView.findViewById(R.id.cardView);
             constraintLayout = itemView.findViewById(R.id.expandableView);
         }
     }
 
-    public ViewJobsAdapter(ArrayList<Job> exampleList, RecyclerView rv) {
+    public ViewJobsAdapter(Context context, ArrayList<Job> exampleList, RecyclerView rv, OnClickInMyAdapterListener myAdapterListener) {
         mExampleList = exampleList;
         this.rv = rv;
+        this.myActivityInterface = myAdapterListener;
+        Toast.makeText(context, "1", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public ExampleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.job_card_layout, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.job_card_layout_apply_layout, parent, false);
         ExampleViewHolder evh = new ExampleViewHolder(v);
         evh.expandBtn.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                Toast.makeText(parent.getContext(),"OnClick workshere", Toast.LENGTH_LONG).show();
+                Toast.makeText(parent.getContext(),"OnClick workshere1", Toast.LENGTH_LONG).show();
                 if(evh.constraintLayout.getVisibility() == View.GONE){
                     TransitionManager.beginDelayedTransition(evh.cv, new AutoTransition());
                     evh.constraintLayout.setVisibility(View.VISIBLE);
@@ -78,6 +88,11 @@ public class ViewJobsAdapter extends RecyclerView.Adapter<ViewJobsAdapter.Exampl
         return evh;
     }
 
+    public interface OnClickInMyAdapterListener {
+        public void onAccepted(String jobId);
+    }
+
+
     @Override
     public void onBindViewHolder(ExampleViewHolder holder, int position) {
         Job currentItem = mExampleList.get(position);
@@ -87,6 +102,29 @@ public class ViewJobsAdapter extends RecyclerView.Adapter<ViewJobsAdapter.Exampl
         holder.mTextView3.setText(currentItem.getJobDuration());
         holder.mTextView4.setText(currentItem.getAmount());
         holder.mTextView5.setText(currentItem.getDescription());
+
+
+        if(currentItem.ifApplied){
+            holder.mStatus.setText("Please wait for Employer to accept");
+            holder.acceptJob.setVisibility(View.GONE);
+        }
+
+        if(currentItem.ifAccepted){
+            holder.mStatus.setText("Employer has accepted. You can now chat");
+            holder.chatBtn.setVisibility(View.VISIBLE);
+        }
+
+        holder.acceptJob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                accept(currentItem.jobId);
+
+            }
+        });
+    }
+
+    public void accept(String jobId){
+        this.myActivityInterface.onAccepted(jobId);
     }
 
     @Override

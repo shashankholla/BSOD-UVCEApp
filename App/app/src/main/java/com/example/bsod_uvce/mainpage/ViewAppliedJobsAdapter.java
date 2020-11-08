@@ -55,13 +55,13 @@ public class ViewAppliedJobsAdapter extends RecyclerView.Adapter<ViewAppliedJobs
 
     @Override
     public ExampleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.job_card_layout, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.job_card_layout_apply_layout, parent, false);
         ExampleViewHolder evh = new ExampleViewHolder(v);
         evh.expandBtn.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                Toast.makeText(parent.getContext(),"OnClick workshere", Toast.LENGTH_LONG).show();
+                Toast.makeText(parent.getContext(),"OnClick Jobs", Toast.LENGTH_LONG).show();
                 if(evh.constraintLayout.getVisibility() == View.GONE){
                     TransitionManager.beginDelayedTransition(evh.cv, new AutoTransition());
                     evh.constraintLayout.setVisibility(View.VISIBLE);

@@ -42,21 +42,22 @@ public class LoginRegPage extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         if (user != null) {
             updateUI(user);
+        } else {
+            findViewById(R.id.regNextButton).setOnClickListener(v -> {
+
+                String mobile = phoneNumber.getText().toString().trim();
+
+                if (mobile.isEmpty() || mobile.length() < 10) {
+                    phoneNumber.setError("Enter a valid mobile");
+                    phoneNumber.requestFocus();
+                    return;
+                }
+
+                Intent intent = new Intent(LoginRegPage.this, OtpActivity.class);
+                intent.putExtra("mobile", mobile);
+                startActivity(intent);
+            });
         }
-        findViewById(R.id.regNextButton).setOnClickListener(v -> {
-
-            String mobile = phoneNumber.getText().toString().trim();
-
-            if(mobile.isEmpty() || mobile.length() < 10){
-                phoneNumber.setError("Enter a valid mobile");
-                phoneNumber.requestFocus();
-                return;
-            }
-
-            Intent intent = new Intent(LoginRegPage.this, OtpActivity.class);
-            intent.putExtra("mobile", mobile);
-            startActivity(intent);
-        });
     }
     private void updateUI(FirebaseUser user)
     {
@@ -68,20 +69,21 @@ public class LoginRegPage extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             labourer= task.getResult().getDocuments().size() > 0;
+                            Intent intent;
+                            if(labourer)
+                                intent = new Intent(LoginRegPage.this, viewJobs.class);
+                            else
+                                intent = new Intent(LoginRegPage.this, EmployerJobs.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            finish();
                         } else {
                             Log.e("Error", "Error getting documents: ", task.getException());
                         }
                     }
                 });
 
-        Intent intent;
-        if(labourer)
-            intent = new Intent(LoginRegPage.this, viewJobs.class);
-        else
-            intent = new Intent(LoginRegPage.this, EmployerJobs.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        finish();
+
     }
 
 }

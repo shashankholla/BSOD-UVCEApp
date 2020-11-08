@@ -32,9 +32,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class viewJobs extends AppCompatActivity {
+public class viewJobs extends AppCompatActivity implements ViewJobsAdapter.OnClickInMyAdapterListener {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -43,7 +45,7 @@ public class viewJobs extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseUser user;
     String myLocation;
-
+    ArrayList<Job> jobList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,18 +54,22 @@ public class viewJobs extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+        jobList = new ArrayList<>();
         ArrayList<Job> exampleList = new ArrayList<>();
         getLocation();
-        exampleList.add(new Job("Painting", "Line 1", "Generic, House, Construction", "3 Days", "50 Rs", true, false,"Bangalore"));
-        exampleList.add(new Job("Pipe Repair", "Line 3", "Plumbing", "3 Days", "50 Rs", false, false,"Bangalore"));
-        exampleList.add(new Job("Construction", "Line 5", "Construction, House", "3 Days", "50 Rs", true, true,"Bangalore"));
-        exampleList.add(new Job("TV Repair", "Line 7", "Electricals, Electronics", "3 Days", "50 Rs", false, false,"Bangalore"));
+//        exampleList.add(new Job("Painting", "Line 1", "Generic, House, Construction", "3 Days", "50 Rs", true, false,"Bangalore"));
+//        exampleList.add(new Job("Pipe Repair", "Line 3", "Plumbing", "3 Days", "50 Rs", false, false,"Bangalore"));
+//        exampleList.add(new Job("Construction", "Line 5", "Construction, House", "3 Days", "50 Rs", true, true,"Bangalore"));
+//        exampleList.add(new Job("TV Repair", "Line 7", "Electricals, Electronics", "3 Days", "50 Rs", false, false,"Bangalore"));
 
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new ViewJobsAdapter(exampleList, mRecyclerView);
+       // mAdapter = new ViewJobsAdapter(this, exampleList, mRecyclerView, (ViewJobsAdapter.OnClickInMyAdapterListener)this );
 
+        //mRecyclerView.setLayoutManager(mLayoutManager);
+        //mRecyclerView.setAdapter(mAdapter);
+        mAdapter = new ViewJobsAdapter(viewJobs.this, jobList, mRecyclerView, viewJobs.this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
         toolbar = findViewById(R.id.toolbar);
@@ -86,16 +92,17 @@ public class viewJobs extends AppCompatActivity {
 
     private void getJobs()
     {
-        ArrayList<Job> jobList = new ArrayList<>();
+
         db.collection("jobs")
                 .whereEqualTo("location", myLocation).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful())
-                {
+                {   jobList.clear();
                     for(QueryDocumentSnapshot document: task.getResult())
                     {
                         Job newJob = new Job();
+                        newJob.jobId = document.getId();
                         newJob.location=(String)document.getData().get("location");
                         newJob.jobTitle=(String)document.getData().get("jobTitle");
                         newJob.description=(String)document.getData().get("description");
@@ -119,9 +126,9 @@ public class viewJobs extends AppCompatActivity {
                             return t2.amount.compareToIgnoreCase(t1.amount);
                         }
                     });
-                    mAdapter = new EmployerSubmittedJobsAdapter(jobList, mRecyclerView);
-                    mRecyclerView.setLayoutManager(mLayoutManager);
-                    mRecyclerView.setAdapter(mAdapter);
+
+                    mAdapter.notifyDataSetChanged();
+
                 }
                 else
                 {
@@ -154,5 +161,16 @@ public class viewJobs extends AppCompatActivity {
     }
 
 
-
+    @Override
+    public void onAccepted(String jobId) {
+        Map<String, Boolean> userMap = new HashMap<>();
+        userMap.put("ifApplied", true);
+        this.db.collection("jobs").document(jobId).update("acceptedLabourerId", user.getUid());
+        this.db.collection("jobs").document(jobId).update("ifApplied", true).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                getJobs();
+            }
+        });
+    }
 }

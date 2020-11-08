@@ -95,5 +95,9 @@
     <string name="enter_your_chat_messages_here">Enter your chat messages here</string>
     <string name="type_here">Type Here</string>
     <string name="send">Send</string>
+    <string name="chat">Chat</string>
+    <string name="accept">Accept</string>
+    <string name="great_talk">Great! You can now chat.</string>
+    <string name="has_applied">has applied</string>
 
 </resources>
