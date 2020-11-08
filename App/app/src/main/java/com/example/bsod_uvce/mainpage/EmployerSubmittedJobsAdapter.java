@@ -112,6 +112,7 @@ public class EmployerSubmittedJobsAdapter extends RecyclerView.Adapter<EmployerS
             holder.acceptJob.setVisibility(View.VISIBLE);
         }
 
+        holder.mStatus.setText(context.getString(R.string.wait_for_job));
         if(currentItem.ifAccepted){
             holder.mStatus.setText(String.valueOf(R.string.great_talk));
             holder.chatBtn.setVisibility(View.VISIBLE);

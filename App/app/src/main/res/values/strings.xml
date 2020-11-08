@@ -102,4 +102,5 @@
     <string name="job_duration">Duration</string>
     <string name="title">Title</string>
     <string name="view_achievements">View your achievements</string>
+    <string name="wait_for_job">Waiting for someone to apply</string>
 </resources>

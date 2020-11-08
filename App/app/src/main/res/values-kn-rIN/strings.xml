@@ -76,4 +76,14 @@
     <string name="set_location_hint">"ನಿಮ್ಮ ಸ್ಥಳವನ್ನು ಟೈಪ್ ಮಾಡಿ "</string>
     <string name="submit">ಸಲ್ಲಿಸು</string>
     <string name="description">ವಿವರಣೆ</string>
+    <string name="wait_for_job">ಯಾರಾದರೂ ಅರ್ಜಿ ಸಲ್ಲಿಸಲು ಕಾಯಲಾಗುತ್ತಿದೆ</string>
+    <string name="view_achievements">ನಿಮ್ಮ ಸಾಧನೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ</string>
+    <string name="title">ಶೀರ್ಷಿಕೆ</string>
+    <string name="job_duration">ಅವಧಿ</string>
+    <string name="has_applied">ಅನ್ವಯಿಸಿದೆ</string>
+    <string name="great_talk">ಅದ್ಭುತವಾಗಿದೆ! ನೀವು ಈಗ ಚಾಟ್ ಮಾಡಬಹುದು.</string>
+    <string name="accept">ಒಪ್ಪಿಕೊಳ್ಳಿ</string>
+    <string name="chat">ಚಾಟ್</string>
+    <string name="send">ಕಳುಹಿಸು</string>
+    <string name="type_here">ಇಲ್ಲಿ ಬರೆಯಿರಿ</string>
 </resources>
