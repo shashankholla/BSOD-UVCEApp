@@ -130,6 +130,7 @@ public class EmployerSubmittedJobsAdapter extends RecyclerView.Adapter<EmployerS
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, ChatBox.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 context.startActivity(i);
             }
         });
